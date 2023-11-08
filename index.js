@@ -1,5 +1,5 @@
 // Funzione creaCelle
-function creaCelle(numeroCelle, bombe){
+function creaCelle(numeroCelle, bombe, mosse, celleSelezionate){
     // Inizializza array celle
     const celle = [];
     // Crea celle
@@ -18,7 +18,10 @@ function creaCelle(numeroCelle, bombe){
         cella.textContent = i;
         // Btn cella click
         cella.addEventListener("click", function(){
+            mosse++;
+            celleSelezionate++;
             if(cella.style.backgroundColor == "blue"){
+                celleSelezionate = celleSelezionate - 2;
                 cella.style.backgroundColor = "transparent";
             }else{
                 // Verifica se è stata colpita la bomba o meno
@@ -28,12 +31,26 @@ function creaCelle(numeroCelle, bombe){
                         puoiGiocare = false;
                     }
                 }
+                const bloccaProgramma = document.getElementById("bloccaProgramma");
                 if(puoiGiocare == true){
                     cella.style.backgroundColor = "blue";
-                    console.log("Non hai colpito la bomba");
+                    if(numeroCelle == "100" && celleSelezionate == 84){
+                        bloccaProgramma.style.display = "block";
+                        console.log("Hai vinto");
+                    }else if(numeroCelle == "81" && celleSelezionate == 65){
+                        bloccaProgramma.style.display = "block";
+                        console.log("Hai vinto");
+                    }else if(numeroCelle == "49" && celleSelezionate == 33){
+                        bloccaProgramma.style.display = "block";
+                        console.log("Hai vinto");
+                    }
+                    else{
+                        console.log("Non hai colpito la bomba");
+                    }
                 }else{
                     cella.style.backgroundColor = "red";
-                    console.log("Hai colpito la bomba");
+                    bloccaProgramma.style.display = "block";
+                    console.log("Hai perso alla " + mosse + " mossa");
                 }
             }
         })
@@ -75,13 +92,17 @@ function mostra_celle(numeroCelle, celle){
 // Btn play click
 const play = document.getElementById("play");
 play.addEventListener("click", function(){
+    const bloccaProgramma = document.getElementById("bloccaProgramma");
+    bloccaProgramma.style.display = "none";
     // Input numero celle
     const numeroCelle = document.getElementById("numeroCelle").value;
     // Invoca funzione creaBombe
     const bombe = creaBombe(numeroCelle);
-    console.log(bombe);
+    console.log(bombe); // Posizione delle bombe
     // Invoca funzione creaCelle
-    const celle = creaCelle(numeroCelle, bombe);
+    const mosse = 0;
+    const celleSelezionate = 0;
+    const celle = creaCelle(numeroCelle, bombe, mosse, celleSelezionate);
     // Invoca funzione mostraCelle
     const mostraCelle = mostra_celle(numeroCelle, celle);
 })
