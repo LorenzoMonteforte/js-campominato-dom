@@ -1,0 +1,92 @@
+/* Generals */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+/* Header */
+header{
+    height: 100px;
+    background-color: white;
+    display: flex;
+}
+
+header > div{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+
+header > div:first-child > img{
+    height: 100%;
+}
+
+header > div:last-child{
+    justify-content: flex-end;
+}
+
+header > div:last-child > select{
+    width: 25%;
+}
+
+header > div:last-child > button{
+    width: 12.5%;
+}
+
+.btn{
+    height: 25%;
+    background-color: rgba(234,234,238,255);
+    border: 1px solid rgba(175,175,185,255);
+    border-radius: 0.3rem;
+    margin-left: 0.3rem;
+}
+/* Main */
+main{
+    height: calc(100vh - 150px);
+    background-color: rgba(127,255,212,255);
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+main > div{
+    height: 100%;
+    aspect-ratio: 1;
+    border: 1px solid black;
+    display: none;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.cella{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cella100{
+    height: calc(100% / 10);
+    width: calc(100% / 10);
+}
+
+.cella81{
+    height: calc(100% / 9);
+    width: calc(100% / 9);
+}
+
+.cella49{
+    height: calc(100% / 7);
+    width: calc(100% / 7);
+}
+/* Footer */
+footer{
+    height: 50px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+}
