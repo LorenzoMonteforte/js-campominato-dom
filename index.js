@@ -32,25 +32,23 @@ function creaCelle(numeroCelle, bombe, mosse, celleSelezionate){
                     }
                 }
                 const bloccaProgramma = document.getElementById("bloccaProgramma");
+                const messaggio = document.getElementById("messaggio");
                 if(puoiGiocare == true){
                     cella.style.backgroundColor = "blue";
                     if(numeroCelle == "100" && celleSelezionate == 84){
                         bloccaProgramma.style.display = "block";
-                        console.log("Hai vinto");
+                        messaggio.innerHTML = "Complimenti! Hai vinto! Clicca sul tasto Play per iniziare una nuova partita.";
                     }else if(numeroCelle == "81" && celleSelezionate == 65){
                         bloccaProgramma.style.display = "block";
-                        console.log("Hai vinto");
+                        messaggio.innerHTML = "Complimenti! Hai vinto! Clicca sul tasto Play per iniziare una nuova partita.";
                     }else if(numeroCelle == "49" && celleSelezionate == 33){
                         bloccaProgramma.style.display = "block";
-                        console.log("Hai vinto");
-                    }
-                    else{
-                        console.log("Non hai colpito la bomba");
+                        messaggio.innerHTML = "Complimenti! Hai vinto! Clicca sul tasto Play per iniziare una nuova partita.";
                     }
                 }else{
                     cella.style.backgroundColor = "red";
                     bloccaProgramma.style.display = "block";
-                    console.log("Hai perso alla " + mosse + " mossa");
+                    messaggio.innerHTML = "Ops... hai fatto esplodere la bomba al tuo " + mosse + " tentativo. Clicca sul tasto Play per iniziare una nuova partita.";
                 }
             }
         })
@@ -94,6 +92,8 @@ const play = document.getElementById("play");
 play.addEventListener("click", function(){
     const bloccaProgramma = document.getElementById("bloccaProgramma");
     bloccaProgramma.style.display = "none";
+    const messaggio = document.getElementById("messaggio");
+    messaggio.innerHTML = `Made with &hearts; by <a href="">Boolean</a>`;
     // Input numero celle
     const numeroCelle = document.getElementById("numeroCelle").value;
     // Invoca funzione creaBombe
