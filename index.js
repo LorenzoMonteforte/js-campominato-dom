@@ -1,5 +1,5 @@
 // Funzione creaCelle
-function creaCelle(numeroCelle){
+function creaCelle(numeroCelle, bombe){
     // Inizializza array celle
     const celle = [];
     // Crea celle
@@ -21,8 +21,20 @@ function creaCelle(numeroCelle){
             if(cella.style.backgroundColor == "blue"){
                 cella.style.backgroundColor = "transparent";
             }else{
-                cella.style.backgroundColor = "blue";
-                console.log("Hai cliccato sulla cella numero " + i);
+                // Verifica se è stata colpita la bomba o meno
+                let puoiGiocare = true;
+                for(let index=0; index<bombe.length; index++){
+                    if(i == bombe[index]){
+                        puoiGiocare = false;
+                    }
+                }
+                if(puoiGiocare == true){
+                    cella.style.backgroundColor = "blue";
+                    console.log("Non hai colpito la bomba");
+                }else{
+                    cella.style.backgroundColor = "red";
+                    console.log("Hai colpito la bomba");
+                }
             }
         })
         // Aggiunge la cella creata all'array celle
@@ -47,7 +59,7 @@ function creaBombe(numeroCelle){
             bombe.push(bomba);
         }
     }
-    console.log(bombe);
+    return bombe;
 }
 // Funzione mostra_celle
 function mostra_celle(numeroCelle, celle){
@@ -65,10 +77,11 @@ const play = document.getElementById("play");
 play.addEventListener("click", function(){
     // Input numero celle
     const numeroCelle = document.getElementById("numeroCelle").value;
-    // Invoca funzione creaCelle
-    const celle = creaCelle(numeroCelle);
     // Invoca funzione creaBombe
     const bombe = creaBombe(numeroCelle);
+    console.log(bombe);
+    // Invoca funzione creaCelle
+    const celle = creaCelle(numeroCelle, bombe);
     // Invoca funzione mostraCelle
     const mostraCelle = mostra_celle(numeroCelle, celle);
 })
