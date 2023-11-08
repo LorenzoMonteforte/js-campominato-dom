@@ -30,6 +30,25 @@ function creaCelle(numeroCelle){
     }
     return celle;
 }
+// Funzione creaBombe
+function creaBombe(numeroCelle){
+    const bombe = [];
+    for(let i=0; i<16; i++){
+        const bomba = Math.trunc(Math.random() * numeroCelle + 1);
+        let puoiPushare = true;
+        for(let index=0; index<bombe.length; index++){
+            if(bomba == bombe[index]){
+                puoiPushare = false;
+                i--;
+                break;
+            }
+        }
+        if(puoiPushare == true){
+            bombe.push(bomba);
+        }
+    }
+    console.log(bombe);
+}
 // Funzione mostra_celle
 function mostra_celle(numeroCelle, celle){
     // Prende il container in cui inserire le celle
@@ -48,6 +67,8 @@ play.addEventListener("click", function(){
     const numeroCelle = document.getElementById("numeroCelle").value;
     // Invoca funzione creaCelle
     const celle = creaCelle(numeroCelle);
+    // Invoca funzione creaBombe
+    const bombe = creaBombe(numeroCelle);
     // Invoca funzione mostraCelle
     const mostraCelle = mostra_celle(numeroCelle, celle);
 })
